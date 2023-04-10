@@ -1,0 +1,17 @@
+name: Ceph daily build and test on openEuler
+
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  issue_comment:
+    types: [created]
+
+jobs:
+  build-and-test:
+    name: Check openstack ci status
+    if: ${{ contains(github.event.comment.body, 'recheck') || github.event_name == 'schedule' }}
+    runs-on: arm64-32u-64g
+    steps:
+      - name: Run the script
+        run: |
+          pwd
