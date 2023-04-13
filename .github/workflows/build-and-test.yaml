@@ -12,6 +12,9 @@ jobs:
     if: ${{ contains(github.event.comment.body, 'recheck') || github.event_name == 'schedule' }}
     runs-on: arm64-32u-64g
     steps:
+      - name: Echo envronment information
+        run: |
+          /opt/code/action/get_env_info.sh
       - name: Build ceph from source
         run: |
           export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/lib64:/usr/local/lib/
@@ -19,5 +22,7 @@ jobs:
           git pull
           rm -rf build
           ./do_cmake.sh -DWITH_MGR_DASHBOARD_FRONTEND:BOOL=OFF
-          cd build
+          pushd build
           ninja -j32
+          popd
+          popd
