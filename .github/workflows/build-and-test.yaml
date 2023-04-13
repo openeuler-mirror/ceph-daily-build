@@ -8,10 +8,16 @@ on:
 
 jobs:
   build-and-test:
-    name: Check openstack ci status
+    name: Build and test ceph from source
     if: ${{ contains(github.event.comment.body, 'recheck') || github.event_name == 'schedule' }}
     runs-on: arm64-32u-64g
     steps:
-      - name: Run the script
+      - name: Build ceph from source
         run: |
-          pwd
+          export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/lib64:/usr/local/lib/
+          pushd /opt/code/ceph
+          git pull
+          rm -rf build
+          ./do_cmake.sh -DWITH_MGR_DASHBOARD_FRONTEND:BOOL=OFF
+          cd build
+          ninja -j32
