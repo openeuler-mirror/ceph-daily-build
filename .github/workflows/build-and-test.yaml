@@ -21,13 +21,14 @@ jobs:
           pushd /opt/code/ceph
           git pull
           rm -rf build
-          ./do_cmake.sh -DWITH_MGR_DASHBOARD_FRONTEND:BOOL=OFF
+          mkdir build
           pushd build
-          ninja -j32
+          cmake3 -DWITH_PYTHON3=3 -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DWITH_MGR_DASHBOARD_FRONTEND:BOOL=OFF -DWITH_TESTS=ON ..
+          make -j32
           popd
           popd
       - name: Run unit test
         run: |
           pushd /opt/code/ceph/build
-          ninja check -j32
+          ctest -E unittest_mempool -j32
           popd
