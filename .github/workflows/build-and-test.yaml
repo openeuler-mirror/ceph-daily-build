@@ -30,5 +30,6 @@ jobs:
       - name: Run unit test
         run: |
           pushd /opt/code/ceph/build
+          make check
           ctest -E unittest_mempool -j32
           popd
