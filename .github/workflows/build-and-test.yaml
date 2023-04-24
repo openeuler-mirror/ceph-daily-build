@@ -18,7 +18,7 @@ jobs:
       - name: Build ceph from source
         run: |
           export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/lib64:/usr/local/lib/
-          pushd /opt/code/ceph
+          pushd /home/action/ceph
           git pull
           git submodule update --init --recursive
           rm -rf build
@@ -31,7 +31,7 @@ jobs:
       - name: Run unit test
         continue-on-error: true
         run: |
-          pushd /opt/code/ceph/build
+          pushd /home/action/ceph/build
           # unittest_mempool always fail, it should be fixed in ceph upstream
           make check -j32
           popd
