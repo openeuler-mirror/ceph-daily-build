@@ -14,10 +14,9 @@ jobs:
     steps:
       - name: Echo environment information
         run: |
-          /opt/code/action/get_env_info.sh
+          /home/action/get_env_info.sh
       - name: Build ceph from source
         run: |
-          export LD_LIBRARY_PATH=$LD_LIBRARY:/usr/local/lib64:/usr/local/lib/
           pushd /home/action/ceph
           git pull
           git submodule update --init --recursive
