@@ -34,3 +34,22 @@ jobs:
           # unittest_mempool always fail, it should be fixed in ceph upstream
           make check -j32
           popd
+      - name: Build RPM package
+        run: |
+          rm -rf /home/action/rpmbuild
+
+          pushd /home/action/ceph
+          git apply ../0001-Add-openEuler-support-for-rpm-spec.patch
+          ./make-dist
+          rpmdev-setuptree
+          mv ceph-1* ~/rpmbuild/SOURCES
+          tar --strip-components=1 -C ~/rpmbuild/SPECS/ --no-anchored -xvjf ~/rpmbuild/SOURCES/ceph-1* "ceph.spec"
+          popd
+
+          pushd /home/action/rpmbuild
+          rpmbuild -ba SPECS/ceph.spec
+          popd
+
+          pushd /home/action/ceph
+          git reset --hard HEAD^
+          popd
