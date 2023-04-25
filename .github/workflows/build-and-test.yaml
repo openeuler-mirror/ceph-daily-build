@@ -39,7 +39,7 @@ jobs:
           rm -rf /home/action/rpmbuild
 
           pushd /home/action/ceph
-          git apply ../0001-Add-openEuler-support-for-rpm-spec.patch
+          git am ../0001-Add-openEuler-support-for-rpm-spec.patch
           ./make-dist
           rpmdev-setuptree
           mv ceph-1* ~/rpmbuild/SOURCES
@@ -52,4 +52,10 @@ jobs:
 
           pushd /home/action/ceph
           git reset --hard HEAD^
+          popd
+      - name: Save RPM package
+        run: |
+          pushd /home/action/package
+          mkdir $(date +"%Y-%m-%d")
+          cp -r /home/action/rpmbuild/RPMS $(date +"%Y-%m-%d")
           popd
