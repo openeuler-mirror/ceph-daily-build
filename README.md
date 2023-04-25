@@ -9,6 +9,7 @@ Daily Ceph build and test on openEuler
 | openEuler version | 22.03 LTS SP1 |
 | Arch  | arm64 |
 | Patch  | [openEuler_RPM_support](./0001-Add-openEuler-support-for-rpm-spec.patch) |
+| Extra needed packages | https://eur.openeuler.openatom.cn/coprs/wxy2933/ceph_dev/ |
 | Action | **Build from source**, **Unit test**, **Build RPM package**|
 | Result | https://github.com/openeuler-mirror/ceph-daily-build/actions/workflows/build-and-test.yaml |
 | Period | UTC 1300 daily |
