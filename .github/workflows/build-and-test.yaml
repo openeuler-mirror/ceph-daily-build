@@ -58,4 +58,5 @@ jobs:
           pushd /home/action/package
           mkdir $(date +"%Y-%m-%d")
           cp -r /home/action/rpmbuild/RPMS $(date +"%Y-%m-%d")
+          rm -f $(date +"%Y-%m-%d")/RPMS/aarch64/ceph-debuginfo*
           popd
