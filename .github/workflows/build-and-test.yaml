@@ -24,7 +24,7 @@ jobs:
           mkdir build
           pushd build
           cmake3 -DWITH_PYTHON3=3 -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DWITH_MGR_DASHBOARD_FRONTEND:BOOL=OFF -DWITH_TESTS=ON ..
-          make -j32
+          make -j16
           popd
           popd
       - name: Run unit test
