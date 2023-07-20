@@ -10,7 +10,7 @@ Daily Ceph build and test on openEuler
 | Arch  | arm64 |
 | Extra needed packages | https://eur.openeuler.openatom.cn/coprs/wxy2933/ceph_dev/ |
 | Action | **Build from source**, **Unit test**, **Build RPM package**|
-| Result | https://github.com/openeuler-mirror/ceph-daily-build/actions/workflows/build-and-test.yaml |
+| Result | ![openEuler Build](https://github.com/openeuler-mirror/ceph-daily-build/actions/workflows/build-and-test.yaml/badge.svg) |
 | Period | UTC 1300 daily |
 | Recheck By Hand | comment 'recheck' in any issue |
 
